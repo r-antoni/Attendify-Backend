@@ -3,7 +3,10 @@ const express = require('express');
 const PORT =  process.env.SERVER_PORT;
 const cors = require('cors')
 const {sequelize} = require('./Models')
-const userRouter = require('./Routes/UserRoute')
+const teacherRouter = require('./Routes/teacherRoutes')
+const studentRouter = require('./Routes/studentRoutes')
+const adminRouter = require('./Routes/adminRoutes')
+
 
 const app = express();
 
@@ -23,7 +26,9 @@ app.get("/home", (req, res) =>{
 
     })
 })
-app.use('/api/user', userRouter)
+app.use('/api' , adminRouter)
+app.use('/api/admin' , teacherRouter)
+app.use('/api/admin' , studentRouter)
 
 app.listen(PORT, () =>{
     console.log(`listen at localhost:${PORT}`)
