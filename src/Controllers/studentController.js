@@ -22,7 +22,7 @@ const create = async(req, res) =>{
         nohp : nohp
     })
     const createuser = await user.create({
-        nama: username,
+        email: email,
         password:hashedPassword,
         roles: 'student'
     })
@@ -30,6 +30,5 @@ const create = async(req, res) =>{
         msg: 'create students succes' 
     })
 }
-
 
 module.exports = {create}

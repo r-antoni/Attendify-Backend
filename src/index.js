@@ -6,6 +6,7 @@ const {sequelize} = require('./Models')
 const teacherRouter = require('./Routes/teacherRoutes')
 const studentRouter = require('./Routes/studentRoutes')
 const adminRouter = require('./Routes/adminRoutes')
+const userrouter = require('./Routes/userRoutes')
 
 
 const app = express();
@@ -26,9 +27,10 @@ app.get("/home", (req, res) =>{
 
     })
 })
+app.use('/api/user' , userrouter)
 app.use('/api' , adminRouter)
-app.use('/api/admin' , teacherRouter)
-app.use('/api/admin' , studentRouter)
+app.use('/api/teachers' , teacherRouter)
+app.use('/api/students' , studentRouter)
 
 app.listen(PORT, () =>{
     console.log(`listen at localhost:${PORT}`)

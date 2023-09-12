@@ -1,49 +1,23 @@
-const {users} = require('../Models')
+const {user} = require('../Models')
 const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken')
-
-const register = async(req, res) =>{
-    
-    const { username , email, password } = req.body
-
-    // console.log(req.body)
-
-    if(!username || !email || !password){
-        return res.status(400).send({
-            msg: 'Gagal Buat Akun'
-        })
-    }
-
-    const hashedPassword = bcrypt.hashSync(password, 8)
-
-    const input = await users.create ({
-        username: username,
-        email: email,
-        password:hashedPassword
-    })
-
-    return res.status(201).send({
-        msg: 'user reqister succes' 
-    })
-}
 
 const login = async (req, res) => {
     try {
-        const {username, password} = req.body
+        const {email, password} = req.body
 
-        if(!username || !password){
+        if(!email || !password){
             return res.status(400).send({
                 msg: "some field be filled, cannnot be empty"
             })
         }
 
-        const getUser = await users.findOne({
-            where: {username : username}
+        const getUser = await user.findOne({
+            where: {email : email}
         })
        
         if(!getUser){
             return res.status(404).send({
-                msg:'User ' + username + ' not found'
+                msg:'User ' + email + ' not found'
             })
         }
 
@@ -74,4 +48,4 @@ const login = async (req, res) => {
     }
 }
 
-module.exports = {register, login}
+module.exports = {login}
