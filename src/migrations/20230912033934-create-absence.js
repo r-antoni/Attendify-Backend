@@ -10,16 +10,21 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       student_id: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      duration: {
+        type: Sequelize.INTEGER,
+        allowNull: false
       },
       reason: {
         type: Sequelize.STRING,
         allowNull: false
       },
       status: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: false
-
+        type: Sequelize.STRING,
+        defaultValue:'menunggu Konfirmasi',
+        allowNull:false
       },
       createdAt: {
         allowNull: false,

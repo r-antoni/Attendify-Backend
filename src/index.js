@@ -7,6 +7,7 @@ const teacherRouter = require('./Routes/teacherRoutes')
 const studentRouter = require('./Routes/studentRoutes')
 const adminRouter = require('./Routes/adminRoutes')
 const userrouter = require('./Routes/userRoutes')
+const absenceRouter = require('./Routes/absenceRoutes')
 
 
 const app = express();
@@ -31,6 +32,7 @@ app.use('/api/user' , userrouter)
 app.use('/api' , adminRouter)
 app.use('/api/teachers' , teacherRouter)
 app.use('/api/students' , studentRouter)
+app.use('/api/absence', absenceRouter)
 
 app.listen(PORT, () =>{
     console.log(`listen at localhost:${PORT}`)
